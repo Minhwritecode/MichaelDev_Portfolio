@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đinh Trần Tiến Minh (Michael Dev) | SE & SC Intern Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        accent: {
+                            cyan: '#06b6d4',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e',
+                            purple: '#a855f7'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                        'morph': 'morph 8s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        },
+                        morph: {
+                            '0%, 100%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+                            '50%': { borderRadius: '30% 60% 70% 30% / 50% 60% 30% 60%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232e42;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4c6b;
+        }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: rgba(99, 102, 241, 0.45);
+            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.3);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #a5b4fc 0%, #38bdf8 40%, #34d399 80%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .morph-blob {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-element.reveal-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-scale.reveal-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-left.reveal-active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-right.reveal-active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .img-zoom-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .img-zoom-container img {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .img-zoom-container:hover img {
+            transform: scale(1.08);
+        }
+
+        .cursor-blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans selection:bg-brand-500 selection:text-white antialiased min-h-screen relative overflow-x-hidden">
+
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-brand-600/20 morph-blob blur-3xl pointer-events-none -z-10"></div>
+    <div class="fixed bottom-1/4 right-10 w-96 h-96 bg-cyan-600/15 morph-blob blur-3xl pointer-events-none -z-10" style="animation-delay: -3s;"></div>
+    <div class="fixed top-1/2 left-10 w-80 h-80 bg-emerald-600/10 morph-blob blur-3xl pointer-events-none -z-10" style="animation-delay: -5s;"></div>
+    <div class="fixed bottom-10 left-1/3 w-80 h-80 bg-purple-600/15 morph-blob blur-3xl pointer-events-none -z-10" style="animation-delay: -2s;"></div>
+
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between glass-card px-5 py-3 rounded-2xl border border-slate-800/80 shadow-2xl backdrop-blur-xl">
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-cyan-500 to-emerald-400 flex items-center justify-center font-bold text-white shadow-lg group-hover:scale-105 transition-transform morph-blob shrink-0">
+                        MD
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-base sm:text-lg tracking-tight text-white block leading-snug whitespace-nowrap">
+                            Đinh Trần Tiến Minh
+                        </span>
+                        <span class="text-[11px] text-brand-400 font-bold tracking-wide block leading-none">
+                            Michael Dev
+                        </span>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium text-slate-300">
+                    <a href="#about" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/60 transition-all">About</a>
+                    <a href="#skills" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/60 transition-all">Skills</a>
+                    <a href="#experience" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/60 transition-all">Experience</a>
+                    <a href="#gallery" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/60 transition-all"><i class="fa-solid fa-camera-retro text-brand-400 mr-1"></i> Life & Story</a>
+                    <a href="#projects" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/60 transition-all">Projects</a>
+                    <a href="#education" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/60 transition-all">Education</a>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-500 hover:from-brand-500 hover:to-cyan-400 text-white text-sm font-semibold shadow-lg shadow-brand-600/30 transition-all hover:scale-[1.03]">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <span>Contact Me</span>
+                    </a>
+                    
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors" aria-label="Toggle Navigation">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden max-w-7xl mx-auto px-4 sm:px-6 mt-2">
+            <div class="glass-card rounded-2xl p-4 flex flex-col gap-2 shadow-2xl border border-slate-800">
+                <a href="#about" class="px-4 py-2.5 rounded-xl hover:bg-slate-800/80 text-slate-200 font-medium mobile-link">About</a>
+                <a href="#skills" class="px-4 py-2.5 rounded-xl hover:bg-slate-800/80 text-slate-200 font-medium mobile-link">Skills</a>
+                <a href="#experience" class="px-4 py-2.5 rounded-xl hover:bg-slate-800/80 text-slate-200 font-medium mobile-link">Experience</a>
+                <a href="#gallery" class="px-4 py-2.5 rounded-xl hover:bg-slate-800/80 text-slate-200 font-medium mobile-link">Life & Story Gallery</a>
+                <a href="#projects" class="px-4 py-2.5 rounded-xl hover:bg-slate-800/80 text-slate-200 font-medium mobile-link">Projects</a>
+                <a href="#education" class="px-4 py-2.5 rounded-xl hover:bg-slate-800/80 text-slate-200 font-medium mobile-link">Education</a>
+                <a href="#contact" class="px-4 py-2.5 rounded-xl bg-brand-600 text-white font-medium text-center mobile-link mt-2">Contact Me</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="pt-32 pb-20 lg:pt-40 lg:pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7 space-y-6 reveal-left">
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-card border border-brand-500/40 text-xs font-semibold text-brand-300 shadow-lg">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 -ml-5"></span>
+                    <span>SE & Solution Consultant Intern @ Cleeksy (2026)</span>
+                </div>
+
+                <div class="space-y-3">
+                    <p class="text-slate-400 text-lg font-medium flex items-center gap-2">
+                        <span>Hello, I am</span>
+                        <span class="w-8 h-[2px] bg-brand-500 rounded-full"></span>
+                    </p>
+                    
+                    <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
+                        Dinh Tran <span class="gradient-text">Tien Minh</span>
+                    </h1>
+
+                    <div class="mt-3 flex items-center min-h-[50px]">
+                        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl glass-card border border-brand-500/30 shadow-xl bg-slate-900/90">
+                            <i class="fa-solid fa-code text-cyan-400 text-xl animate-pulse"></i>
+                            <div class="flex items-center">
+                                <span id="typed-text" class="text-lg sm:text-2xl font-extrabold text-cyan-300 tracking-wide"></span>
+                                <span class="w-2 h-6 bg-brand-400 ml-1 rounded-sm cursor-blink"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
+                    3rd-year Software Engineering student at <strong class="text-white font-semibold">VKU</strong>. Combining <span class="text-brand-300 font-bold">Software Engineering</span> and <span class="text-cyan-300 font-bold">Solution Consulting</span> — designing system architectures, enterprise process digitization on low-code DOP platforms, web engineering, and predictive AI solutions.
+                </p>
+
+                <div class="grid grid-cols-3 gap-4 pt-2 max-w-lg">
+                    <div class="glass-card p-3.5 rounded-2xl border-slate-800/80 text-center glass-card-hover">
+                        <div class="text-xl sm:text-2xl font-extrabold text-brand-400">Michael Dev</div>
+                        <div class="text-[11px] text-slate-400 font-medium mt-0.5">Developer Alias</div>
+                    </div>
+                    <div class="glass-card p-3.5 rounded-2xl border-slate-800/80 text-center glass-card-hover">
+                        <div class="text-xl sm:text-2xl font-extrabold text-cyan-400">Cleeksy</div>
+                        <div class="text-[11px] text-slate-400 font-medium mt-0.5">SE & SC Intern</div>
+                    </div>
+                    <div class="glass-card p-3.5 rounded-2xl border-slate-800/80 text-center glass-card-hover">
+                        <div class="text-xl sm:text-2xl font-extrabold text-emerald-400">KMUTNB</div>
+                        <div class="text-[11px] text-slate-400 font-medium mt-0.5">Thailand Exchange</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-4 pt-4">
+                    <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-500 hover:from-brand-500 hover:to-cyan-400 text-white font-semibold shadow-lg shadow-brand-600/30 transition-all hover:scale-105 flex items-center gap-2">
+                        <span>View Projects</span>
+                        <i class="fa-solid fa-arrow-down-long text-sm"></i>
+                    </a>
+
+                    <a href="#gallery" class="px-6 py-3.5 rounded-xl glass-card hover:bg-slate-800/80 text-slate-200 font-semibold border border-slate-700 transition-all hover:scale-105 flex items-center gap-2">
+                        <i class="fa-solid fa-images text-brand-400"></i>
+                        <span>Photo Gallery</span>
+                    </a>
+
+                    <div class="flex items-center gap-2 ml-auto sm:ml-2">
+                        <a href="https://github.com/Minhwritecode" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 border-slate-800 hover:border-brand-500/50 transition-all" title="GitHub Profile">
+                            <i class="fa-brands fa-github text-lg"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/michael0308/" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 border-slate-800 hover:border-brand-500/50 transition-all" title="LinkedIn Profile">
+                            <i class="fa-brands fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="mailto:contact@cleeksy.com" class="w-11 h-11 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 border-slate-800 hover:border-brand-500/50 transition-all" title="Send Email">
+                            <i class="fa-solid fa-envelope text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 flex justify-center reveal-right">
+                <div class="relative w-full max-w-sm">
+                    <div class="absolute -inset-2 bg-gradient-to-r from-brand-600 via-cyan-400 to-emerald-400 morph-blob blur-2xl opacity-60 animate-pulse-slow"></div>
+                    
+                    <div class="relative glass-card p-6 rounded-3xl border border-slate-700/80 shadow-2xl flex flex-col items-center text-center">
+                        <div class="relative w-52 h-52 sm:w-60 sm:h-60 rounded-2xl overflow-hidden border-2 border-slate-700/80 mb-5 shadow-2xl bg-slate-900 group cursor-pointer img-zoom-container" onclick="openLightbox('https://i.postimg.cc/zBbjHjWJ/Michael-trong-ma-y-a-nh-cu-oi-tuoiu.jpg', 'Dinh Tran Tien Minh (Michael Dev)')">
+                            <img src="https://i.postimg.cc/zBbjHjWJ/Michael-trong-ma-y-a-nh-cu-oi-tuoiu.jpg" alt="Dinh Tran Tien Minh" class="w-full h-full object-cover rounded-2xl" onerror="this.src='https://i.postimg.cc/PrmSM27J/2aoboqnzdcvgvopsfth7wdej8mph3fc3javwrdwk9.jpg'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-70 group-hover:opacity-40 transition-opacity"></div>
+                            <div class="absolute top-3 right-3 px-2 py-1 bg-slate-900/80 backdrop-blur-md rounded-lg text-[10px] text-brand-300 border border-slate-700/50 flex items-center gap-1">
+                                <i class="fa-solid fa-expand"></i> Zoom
+                            </div>
+                            
+                            <div class="absolute bottom-2 left-2 right-2 px-2 py-1.5 bg-slate-900/90 backdrop-blur-md rounded-xl text-[11px] font-medium text-slate-300 border border-slate-700/50 flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-location-dot text-rose-400"></i>
+                                <span>Da Nang, Vietnam</span>
+                            </div>
+                        </div>
+
+                        <h3 class="text-xl font-extrabold text-white">Dinh Tran Tien Minh</h3>
+                        <p class="text-xs text-brand-400 font-bold mb-4">Michael Dev • SE & SC Intern @ Cleeksy</p>
+
+                        <div class="w-full space-y-2 text-xs text-left">
+                            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                                <span class="text-slate-400"><i class="fa-solid fa-briefcase text-brand-400 mr-2"></i>Internship</span>
+                                <span class="font-semibold text-slate-200">SE & SC Intern (Cleeksy)</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                                <span class="text-slate-400"><i class="fa-solid fa-graduation-cap text-cyan-400 mr-2"></i>University</span>
+                                <span class="font-semibold text-slate-200">VKU University (2023 - 2027)</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                                <span class="text-slate-400"><i class="fa-solid fa-plane text-emerald-400 mr-2"></i>Global Program</span>
+                                <span class="font-semibold text-slate-200">KMUTNB Exchange (Thailand)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about" class="py-20 border-t border-slate-800/60 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal-element">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">About Me</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold text-white">Bridging Technical Engineering & Enterprise Solutions</p>
+            <p class="text-slate-400 mt-4 text-base">
+                Beyond writing clean code, I focus on engineering scalable technology solutions tailored to solve real-world enterprise operational challenges.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card p-6 rounded-2xl glass-card-hover border-slate-800/80 relative overflow-hidden reveal-element">
+                <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-xl font-bold mb-5 border border-brand-500/30 morph-blob">
+                    <i class="fa-solid fa-sitemap"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Solution Consulting (SC)</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Analyzing business operations, modeling relational data structures (ERM), and configuring automated workflow approval trees on the Cleeksy DOP platform for enterprise clients.
+                </p>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl glass-card-hover border-slate-800/80 relative overflow-hidden reveal-element" style="transition-delay: 0.15s;">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl font-bold mb-5 border border-cyan-500/30 morph-blob">
+                    <i class="fa-solid fa-code-branch"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Software Engineering (SE)</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Solid Full-Stack foundation with Java, Python, React.js, Node.js, RESTful API architecture, and multi-database management (MySQL, Firebase, MongoDB).
+                </p>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl glass-card-hover border-slate-800/80 relative overflow-hidden reveal-element" style="transition-delay: 0.3s;">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold mb-5 border border-emerald-500/30 morph-blob">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Artificial Intelligence & Global Mindset</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Researching predictive Machine Learning models (EduMindAI project), participating in KOICA Hackathon, and taking part in international exchange at KMUTNB Thailand.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 border-t border-slate-800/60 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal-element">
+            <div>
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Competencies</h2>
+                <p class="text-3xl font-extrabold text-white">Technical Skills & Expertise</p>
+            </div>
+            <p class="text-slate-400 text-sm max-w-md mt-2 md:mt-0">
+                Programming languages, frameworks, low-code platforms, and development tools applied in real-world environments.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div class="glass-card p-6 rounded-2xl border-slate-800/80 reveal-element">
+                <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                    <i class="fa-solid fa-terminal text-brand-400 text-xl"></i>
+                    <h3 class="font-bold text-white text-base">Programming Languages</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-java text-orange-400"></i> Java</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-python text-yellow-400"></i> Python</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-js text-yellow-300"></i> JavaScript (ES6+)</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-solid fa-database text-cyan-400"></i> SQL</span>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border-slate-800/80 reveal-element" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                    <i class="fa-solid fa-laptop-code text-cyan-400 text-xl"></i>
+                    <h3 class="font-bold text-white text-base">Frontend & Frameworks</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-react text-cyan-400"></i> React.js</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-react text-sky-400"></i> React Native</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-html5 text-orange-500"></i> HTML5 / CSS3</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-solid fa-wind text-teal-400"></i> Tailwind CSS</span>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border-slate-800/80 reveal-element" style="transition-delay: 0.2s;">
+                <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                    <i class="fa-solid fa-server text-emerald-400 text-xl"></i>
+                    <h3 class="font-bold text-white text-base">Backend & Databases</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-brands fa-node-js text-green-500"></i> Node.js / Express</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-solid fa-database text-blue-400"></i> MySQL</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-solid fa-fire text-amber-500"></i> Firebase</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 flex items-center gap-1.5"><i class="fa-solid fa-plug text-purple-400"></i> RESTful APIs</span>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border-slate-800/80 reveal-element">
+                <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                    <i class="fa-solid fa-sitemap text-amber-400 text-xl"></i>
+                    <h3 class="font-bold text-white text-base">Solution Consulting (Low-Code)</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Cleeksy DOP Platform</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Relational Modeling (ERM)</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Workflow Automation Trees</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Business Requirement Analysis</span>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border-slate-800/80 reveal-element" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                    <i class="fa-solid fa-robot text-purple-400 text-xl"></i>
+                    <h3 class="font-bold text-white text-base">AI & Machine Learning</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Machine Learning (Scikit-Learn)</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Predictive Modeling</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Computer Graphics (OpenGL)</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Socket.IO Real-time</span>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border-slate-800/80 reveal-element" style="transition-delay: 0.2s;">
+                <div class="flex items-center gap-3 mb-5 pb-3 border-b border-slate-800">
+                    <i class="fa-solid fa-toolbox text-rose-400 text-xl"></i>
+                    <h3 class="font-bold text-white text-base">Tools & Professional Skills</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200"><i class="fa-brands fa-git-alt text-red-500"></i> Git / GitHub</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Postman API</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Figma UI/UX</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">5-Star Service Standards</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200">Critical Problem Solving</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 border-t border-slate-800/60 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal-element">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Journey</h2>
+            <p class="text-3xl font-extrabold text-white">Work Experience & Internships</p>
+        </div>
+
+        <div class="relative border-l-2 border-slate-800 max-w-4xl mx-auto pl-6 sm:pl-10 space-y-12">
+            
+            <!-- Experience Item 1: Cleeksy -->
+            <div class="relative group reveal-element">
+                <div class="absolute -left-[31px] sm:-left-[47px] top-1 w-6 h-6 rounded-full bg-brand-600 border-4 border-slate-950 text-white flex items-center justify-center text-[10px] shadow-lg group-hover:scale-125 transition-transform">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border-slate-800/80 glass-card-hover">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <span class="px-3 py-1 rounded-md bg-brand-500/20 text-brand-300 border border-brand-500/30 text-xs font-semibold">Current Position</span>
+                            <h3 class="text-xl font-bold text-white mt-2">SE & Solution Consultant Intern</h3>
+                            <p class="text-brand-400 font-semibold text-sm">Cleeksy — Enterprise DOP Platform</p>
+                        </div>
+                        <span class="text-xs font-medium text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 self-start sm:self-auto">
+                            2026 – Present | Da Nang, Vietnam
+                        </span>
+                    </div>
+
+                    <ul class="space-y-3 text-sm text-slate-300 list-disc list-inside">
+                        <li><strong>Solution Consultant (SC Intern):</strong> Analyzed enterprise business processes, modeled relational entity data structures (ERM), and configured automated approval workflows on Cleeksy DOP.</li>
+                        <li><strong>Software Engineer (SE Intern):</strong> Executed custom business logic, performed API integration testing, and supported multi-module platform operations.</li>
+                        <li>Bridged complex business problems into structured, scalable digital enterprise architecture.</li>
+                    </ul>
+
+                    <div class="mt-6 pt-4 border-t border-slate-800/80">
+                        <div class="text-xs font-bold text-slate-400 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-camera text-brand-400"></i> Cleeksy Internship Moments
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <div class="h-28 rounded-xl overflow-hidden img-zoom-container border border-slate-800 cursor-pointer" onclick="openLightbox('https://i.postimg.cc/zBbjHjWJ/Michael-trong-ma-y-a-nh-cu-oi-tuoiu.jpg', 'Cleeksy Intern - Dinh Tran Tien Minh')">
+                                <img src="https://i.postimg.cc/zBbjHjWJ/Michael-trong-ma-y-a-nh-cu-oi-tuoiu.jpg" class="w-full h-full object-cover" alt="Cleeksy Intern 1">
+                            </div>
+                            <div class="h-28 rounded-xl overflow-hidden img-zoom-container border border-slate-800 cursor-pointer" onclick="openLightbox('https://i.postimg.cc/PrmSM27J/2aoboqnzdcvgvopsfth7wdej8mph3fc3javwrdwk9.jpg', 'Working Session at Cleeksy')">
+                                <img src="https://i.postimg.cc/PrmSM27J/2aoboqnzdcvgvopsfth7wdej8mph3fc3javwrdwk9.jpg" class="w-full h-full object-cover" alt="Cleeksy Intern 2">
+                            </div>
+                            <div class="h-28 rounded-xl overflow-hidden img-zoom-container border border-slate-800 cursor-pointer" onclick="openLightbox('https://i.postimg.cc/CLjc4m2k/2aoboqnzdsvn11o7dloxvjlgtuiqif3bx13vbgry10.jpg', 'Team Collaboration at Cleeksy')">
+                                <img src="https://i.postimg.cc/CLjc4m2k/2aoboqnzdsvn11o7dloxvjlgtuiqif3bx13vbgry10.jpg" class="w-full h-full object-cover" alt="Cleeksy Intern 3">
+                            </div>
+                            <div class="h-28 rounded-xl overflow-hidden img-zoom-container border border-slate-800 cursor-pointer" onclick="openLightbox('https://i.postimg.cc/QCp4ybfH/2aoboqnzw5cmyokmmfrgzzbmden2cqkirkq7svq438.jpg', 'Cleeksy Work Environment')">
+                                <img src="https://i.postimg.cc/QCp4ybfH/2aoboqnzw5cmyokmmfrgzzbmden2cqkirkq7svq438.jpg" class="w-full h-full object-cover" alt="Cleeksy Intern 4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mt-5">
+                        <span class="px-2.5 py-1 rounded bg-slate-900 text-xs text-slate-400">SE & SC Intern</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-900 text-xs text-slate-400">Cleeksy DOP</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-900 text-xs text-slate-400">Entity Relational Modeling</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-900 text-xs text-slate-400">Workflow Automation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Item 2: InterContinental -->
+            <div class="relative group reveal-element">
+                <div class="absolute -left-[31px] sm:-left-[47px] top-1 w-6 h-6 rounded-full bg-slate-700 border-4 border-slate-950 text-white flex items-center justify-center text-[10px] shadow-lg group-hover:scale-125 transition-transform">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border-slate-800/80 glass-card-hover">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <span class="px-3 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-semibold">Service Operations</span>
+                            <h3 class="text-xl font-bold text-white mt-2">Part-Time F&B Service Staff</h3>
+                            <p class="text-slate-300 font-semibold text-sm">InterContinental Danang Sun Peninsula Resort</p>
+                        </div>
+                        <span class="text-xs font-medium text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 self-start sm:self-auto">
+                            2025 – Present | Da Nang
+                        </span>
+                    </div>
+
+                    <ul class="space-y-3 text-sm text-slate-300 list-disc list-inside">
+                        <li>Delivered high-end luxury dining service at a world-class 5-star international resort.</li>
+                        <li>Cultivated professional high-pressure communication, emergency conflict resolution, and teamwork under strict service standards.</li>
+                    </ul>
+
+                    <div class="mt-6 pt-4 border-t border-slate-800/80">
+                        <div class="text-xs font-bold text-slate-400 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-hotel text-amber-400"></i> InterContinental Danang Experience
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <div class="h-28 rounded-xl overflow-hidden img-zoom-container border border-slate-800 cursor-pointer" onclick="openLightbox('https://i.postimg.cc/X7wsgQP5/2aoboqnzdubebbiilmtblhdwgc4kzuh7cgyj7d0c11.jpg', 'Work at InterContinental Danang')">
+                                <img src="https://i.postimg.cc/X7wsgQP5/2aoboqnzdubebbiilmtblhdwgc4kzuh7cgyj7d0c11.jpg" class="w-full h-full object-cover" alt="ICDN 1">
+                            </div>
+                            <div class="h-28 rounded-xl overflow-hidden img-zoom-container border border-slate-800 cursor-pointer" onclick="openLightbox('https://i.postimg.cc/L4fb59mX/2aoboqnzv8nwddkvqviw35ixgypsjat4o3x2esp227.jpg', '5-Star Hospitality Standards')">
+                                <img src="https://i.postimg.cc/L4fb59mX/2aoboqnzv8nwddkvqviw35ixgypsjat4o3x2esp227.jpg" class="w-full h-full object-cover" alt="ICDN 2">
+                            </div>
+                            <div class="h-28 rounded-xl overflow-hidden img-zoom-container border border-slate-800 cursor-pointer" onclick="openLightbox('https://i.postimg.cc/SQ8vRSmq/2aoboqnztrjtxfhbdwpuwfot921ekeag8gtedseo23.jpg', 'InterContinental Team')">
+                                <img src="https://i.postimg.cc/SQ8vRSmq/2aoboqnztrjtxfhbdwpuwfot921ekeag8gtedseo23.jpg" class="w-full h-full object-cover" alt="ICDN 3">
+                            </div>
+                            <div class="h-28 rounded-xl overflow-hidden img-zoom-container border border-slate-800 cursor-pointer" onclick="openLightbox('https://i.postimg.cc/h4x5vDKq/2aoboqnztplzqq9mjmknazgazc8mnlm9f8ybessy22.jpg', 'Moments at Resort Operations')">
+                                <img src="https://i.postimg.cc/h4x5vDKq/2aoboqnztplzqq9mjmknazgazc8mnlm9f8ybessy22.jpg" class="w-full h-full object-cover" alt="ICDN 4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mt-5">
+                        <span class="px-2.5 py-1 rounded bg-slate-900 text-xs text-slate-400">5-Star Standards</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-900 text-xs text-slate-400">Conflict Management</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-900 text-xs text-slate-400">Client Communication</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 border-t border-slate-800/60 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 reveal-element">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Life & Stories</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold text-white">Photo Gallery & Life Journeys</p>
+            <p class="text-slate-400 mt-2 text-sm">International academic exchanges, Esports competitions, sunset photography, and campus activities.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-10 reveal-element" id="gallery-tabs">
+            <button class="gallery-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-600 text-white shadow-lg transition-all" data-category="thailand"><i class="fa-solid fa-plane-departure mr-1.5"></i> Thailand Exchange</button>
+            <button class="gallery-tab-btn px-4 py-2 rounded-xl text-xs font-bold glass-card text-slate-400 hover:text-white transition-all" data-category="sunset"><i class="fa-solid fa-sun mr-1.5 text-amber-400"></i> Sunset & Life</button>
+            <button class="gallery-tab-btn px-4 py-2 rounded-xl text-xs font-bold glass-card text-slate-400 hover:text-white transition-all" data-category="esports"><i class="fa-solid fa-gamepad mr-1.5 text-rose-400"></i> Esports Tournaments</button>
+            <button class="gallery-tab-btn px-4 py-2 rounded-xl text-xs font-bold glass-card text-slate-400 hover:text-white transition-all" data-category="campus"><i class="fa-solid fa-graduation-cap mr-1.5 text-cyan-400"></i> VKU Campus Life</button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="gallery-grid">
+            
+            <!-- Thailand Exchange Images -->
+            <div class="gallery-item gallery-thailand h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer reveal-scale" onclick="openLightbox('https://i.postimg.cc/Yq1dxbPR/2aoboqnze1jovkort0e9n9qg6lltidb5m5a0yly413.jpg', 'KMUTNB Thailand Exchange Program')">
+                <img src="https://i.postimg.cc/Yq1dxbPR/2aoboqnze1jovkort0e9n9qg6lltidb5m5a0yly413.jpg" class="w-full h-full object-cover" alt="KMUTNB Thailand 1">
+            </div>
+            <div class="gallery-item gallery-thailand h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer reveal-scale" onclick="openLightbox('https://i.postimg.cc/02pVCc4b/2aoboqnzdtzooza2dkbgl05zguzheobckkdmgb5m12.jpg', 'Exchange Delegation in Thailand')">
+                <img src="https://i.postimg.cc/02pVCc4b/2aoboqnzdtzooza2dkbgl05zguzheobckkdmgb5m12.jpg" class="w-full h-full object-cover" alt="KMUTNB Thailand 2">
+            </div>
+            <div class="gallery-item gallery-thailand h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer reveal-scale" onclick="openLightbox('https://i.postimg.cc/T3fCNn8W/2aoboqnze5mib61pye0nnwfbtjfmdm8ybpv1he7m14.jpg', 'KMUTNB Academic Workshop')">
+                <img src="https://i.postimg.cc/T3fCNn8W/2aoboqnze5mib61pye0nnwfbtjfmdm8ybpv1he7m14.jpg" class="w-full h-full object-cover" alt="KMUTNB Thailand 3">
+            </div>
+            <div class="gallery-item gallery-thailand h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer reveal-scale" onclick="openLightbox('https://i.postimg.cc/zG802Tmg/2aoboqnzdqd0q6tncr2rpnwvtcjdsn4ecpcfveuq15.jpg', 'International Peers at KMUTNB')">
+                <img src="https://i.postimg.cc/zG802Tmg/2aoboqnzdqd0q6tncr2rpnwvtcjdsn4ecpcfveuq15.jpg" class="w-full h-full object-cover" alt="KMUTNB Thailand 4">
+            </div>
+            <div class="gallery-item gallery-thailand h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer reveal-scale" onclick="openLightbox('https://i.postimg.cc/HkdBvbG5/2aoboqnzez3hoiyk5gw6txaa1xswsr2zvhx1sgxo16.jpg', 'Cultural Exchange in Thailand')">
+                <img src="https://i.postimg.cc/HkdBvbG5/2aoboqnzez3hoiyk5gw6txaa1xswsr2zvhx1sgxo16.jpg" class="w-full h-full object-cover" alt="KMUTNB Thailand 5">
+            </div>
+            <div class="gallery-item gallery-thailand h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer reveal-scale" onclick="openLightbox('https://i.postimg.cc/wMhfGVwj/2aoboqnzcl9dy0y7nmayurr6euvng9eecy0myiq445.jpg', 'Memories from Thailand')">
+                <img src="https://i.postimg.cc/wMhfGVwj/2aoboqnzcl9dy0y7nmayurr6euvng9eecy0myiq445.jpg" class="w-full h-full object-cover" alt="KMUTNB Thailand 6">
+            </div>
+            <div class="gallery-item gallery-thailand h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer reveal-scale" onclick="openLightbox('https://i.postimg.cc/QN5yC8jZ/2aoboqnztjf8wy9kcx3bixf5ad9mbqudnsunfaza21.jpg', 'With KMUTNB Faculty & Professors')">
+                <img src="https://i.postimg.cc/QN5yC8jZ/2aoboqnztjf8wy9kcx3bixf5ad9mbqudnsunfaza21.jpg" class="w-full h-full object-cover" alt="KMUTNB Thailand 7">
+            </div>
+            <div class="gallery-item gallery-thailand h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer reveal-scale" onclick="openLightbox('https://i.postimg.cc/y69bx174/2aoboqnztctmpim4pddpu0qbytlwssowypcv1iii20.jpg', 'Academic Experience in Thailand')">
+                <img src="https://i.postimg.cc/y69bx174/2aoboqnztctmpim4pddpu0qbytlwssowypcv1iii20.jpg" class="w-full h-full object-cover" alt="KMUTNB Thailand 8">
+            </div>
+
+            <div class="gallery-item gallery-sunset hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/Fs4nJMK9/2aoboqnzvzylyfh1hjsfoczsjijareqbalkmy01231.jpg', 'Da Nang Sunset Sky')">
+                <img src="https://i.postimg.cc/Fs4nJMK9/2aoboqnzvzylyfh1hjsfoczsjijareqbalkmy01231.jpg" class="w-full h-full object-cover" alt="Sunset 1">
+            </div>
+            <div class="gallery-item gallery-sunset hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/28DXBs5h/2aoboqnzvrcf7ex7gieqzhyyngzqcaxsjv5n4l7y37.jpg', 'Evening Coastal Glow')">
+                <img src="https://i.postimg.cc/28DXBs5h/2aoboqnzvrcf7ex7gieqzhyyngzqcaxsjv5n4l7y37.jpg" class="w-full h-full object-cover" alt="Sunset 2">
+            </div>
+            <div class="gallery-item gallery-sunset hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/CLg6f3Kq/2aoboqnzvraoium8q9hjw6zlcczoif9uqfdmousa36.jpg', 'Serene Twilight View')">
+                <img src="https://i.postimg.cc/CLg6f3Kq/2aoboqnzvraoium8q9hjw6zlcczoif9uqfdmousa36.jpg" class="w-full h-full object-cover" alt="Sunset 3">
+            </div>
+            <div class="gallery-item gallery-sunset hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/7YkQTFLw/2aoboqnzvokq3nn0grfluqc6nlbr2otcggmlhznu30.jpg', 'Golden Hour Colors')">
+                <img src="https://i.postimg.cc/7YkQTFLw/2aoboqnzvokq3nn0grfluqc6nlbr2otcggmlhznu30.jpg" class="w-full h-full object-cover" alt="Sunset 4">
+            </div>
+            <div class="gallery-item gallery-sunset hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/VL8HbxNz/2aoboqnzvnzrngomvdffzo7tcyra4xtykupcxtxi29.jpg', 'Skyline Evening Horizon')">
+                <img src="https://i.postimg.cc/VL8HbxNz/2aoboqnzvnzrngomvdffzo7tcyra4xtykupcxtxi29.jpg" class="w-full h-full object-cover" alt="Sunset 5">
+            </div>
+            <div class="gallery-item gallery-sunset hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/CLg6f3KZ/2aoboqnzvme4blmrelxoowakkmodoy7bcjlkkk4e35.jpg', 'Orange Glow Horizon')">
+                <img src="https://i.postimg.cc/CLg6f3KZ/2aoboqnzvme4blmrelxoowakkmodoy7bcjlkkk4e35.jpg" class="w-full h-full object-cover" alt="Sunset 6">
+            </div>
+            <div class="gallery-item gallery-sunset hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/sDr0Zk2Q/2aoboqnzvldsa0zptmyv900oxenyhkk8mchcundu34.jpg', 'Nature Photography')">
+                <img src="https://i.postimg.cc/sDr0Zk2Q/2aoboqnzvldsa0zptmyv900oxenyhkk8mchcundu34.jpg" class="w-full h-full object-cover" alt="Sunset 7">
+            </div>
+            <div class="gallery-item gallery-sunset hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/xT2Fbwdd/2aoboqnzvhk0iofr0bzwwb5tvvydylx5xdldszmk33.jpg', 'Dusk Silhouette Sky')">
+                <img src="https://i.postimg.cc/xT2Fbwdd/2aoboqnzvhk0iofr0bzwwb5tvvydylx5xdldszmk33.jpg" class="w-full h-full object-cover" alt="Sunset 8">
+            </div>
+            <div class="gallery-item gallery-sunset hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/DyTYb9zv/2aoboqnzvfrdbptu4j9lcrtqhag5oxzsii1kxiyi32.jpg', 'Vibrant Sunset Palette')">
+                <img src="https://i.postimg.cc/DyTYb9zv/2aoboqnzvfrdbptu4j9lcrtqhag5oxzsii1kxiyi32.jpg" class="w-full h-full object-cover" alt="Sunset 9">
+            </div>
+            <div class="gallery-item gallery-sunset hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/05mBjk9r/2aoboqnzv9k8wkurr9ylcfcm3lbaxr2mq28vbru828.jpg', 'Peaceful Twilight Reflection')">
+                <img src="https://i.postimg.cc/05mBjk9r/2aoboqnzv9k8wkurr9ylcfcm3lbaxr2mq28vbru828.jpg" class="w-full h-full object-cover" alt="Sunset 10">
+            </div>
+
+            <!-- Esports Tournament Images -->
+            <div class="gallery-item gallery-esports hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/44tSyfsw/2aoboqnzymw6tlyulibohshpi6ngyhiuxeraor1c39.jpg', 'Arena of Valor Esports Tournament')">
+                <img src="https://i.postimg.cc/44tSyfsw/2aoboqnzymw6tlyulibohshpi6ngyhiuxeraor1c39.jpg" class="w-full h-full object-cover" alt="Esports 1">
+            </div>
+            <div class="gallery-item gallery-esports hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/jqNF2xtM/2aoboqnzynacck10spyoksb8sba0jwm7uppbiwq040.jpg', 'Competitive Gaming Team Stage')">
+                <img src="https://i.postimg.cc/jqNF2xtM/2aoboqnzynacck10spyoksb8sba0jwm7uppbiwq040.jpg" class="w-full h-full object-cover" alt="Esports 2">
+            </div>
+
+            <!-- Campus & Events Images -->
+            <div class="gallery-item gallery-campus hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/sfSNxj33/2aoboqnzu1ynagme6ymaf8doxckadqywnqrozbxe24.jpg', 'Student Life at VKU University')">
+                <img src="https://i.postimg.cc/sfSNxj33/2aoboqnzu1ynagme6ymaf8doxckadqywnqrozbxe24.jpg" class="w-full h-full object-cover" alt="Campus 1">
+            </div>
+            <div class="gallery-item gallery-campus hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/XNFzqjnN/2aoboqnzu3dqmvlsrxelfxswwxpyixxoi97fdcl225.jpg', 'VKU Campus Events & Festivities')">
+                <img src="https://i.postimg.cc/XNFzqjnN/2aoboqnzu3dqmvlsrxelfxswwxpyixxoi97fdcl225.jpg" class="w-full h-full object-cover" alt="Campus 2">
+            </div>
+            <div class="gallery-item gallery-campus hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/HW5hnYTL/2aoboqnzugivhxzvrnrxpv3znhkuxxgikfxppty426.jpg', 'Extracurricular University Activities')">
+                <img src="https://i.postimg.cc/HW5hnYTL/2aoboqnzugivhxzvrnrxpv3znhkuxxgikfxppty426.jpg" class="w-full h-full object-cover" alt="Campus 3">
+            </div>
+            <div class="gallery-item gallery-campus hidden h-48 sm:h-60 rounded-2xl overflow-hidden glass-card border border-slate-800 img-zoom-container cursor-pointer" onclick="openLightbox('https://i.postimg.cc/RhcsDRgw/2aoboqnzcgo1myp75jwyoa0nu6kzxksnyptbj31e41.jpg', 'VKU Student Team Memories')">
+                <img src="https://i.postimg.cc/RhcsDRgw/2aoboqnzcgo1myp75jwyoa0nu6kzxksnyptbj31e41.jpg" class="w-full h-full object-cover" alt="Campus 4">
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 border-t border-slate-800/60 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10 reveal-element">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Portfolio</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold text-white">Featured Projects</p>
+            <p class="text-slate-400 mt-2 text-sm">Real-world web apps, machine learning models, low-code DOP workflows, and interactive tools.</p>
+        </div>
+
+        <!-- Project Filter Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-10 reveal-element" id="project-filters">
+            <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-600 text-white shadow-lg transition-all" data-filter="all">All Projects</button>
+            <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-bold glass-card text-slate-400 hover:text-white transition-all" data-filter="ai">AI & Machine Learning</button>
+            <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-bold glass-card text-slate-400 hover:text-white transition-all" data-filter="web">Full-Stack / Web</button>
+            <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-bold glass-card text-slate-400 hover:text-white transition-all" data-filter="lowcode">Low-Code / DOP</button>
+            <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-bold glass-card text-slate-400 hover:text-white transition-all" data-filter="graphics">Graphics & Mobile</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
+            
+            <!-- Project 1: EduMindAI -->
+            <div class="project-card glass-card rounded-2xl overflow-hidden border-slate-800/80 glass-card-hover flex flex-col reveal-scale" data-category="ai">
+                <div class="h-48 bg-slate-900/90 relative overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-900/60 to-purple-900/40"></div>
+                    <i class="fa-solid fa-brain text-6xl text-brand-400/80 relative z-10"></i>
+                    <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[11px] font-bold z-10">AI / ML</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">EduMindAI – Retention Predictor</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Machine Learning system predicting dropout risks based on academic metrics, paired with personalized learning recommendation dashboards.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Python</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Scikit-Learn</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">React.js</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">REST API</span>
+                        </div>
+                        <button onclick="openModal('edumindai')" class="w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-brand-600 text-slate-200 hover:text-white text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Cleeksy Workflow Automation -->
+            <div class="project-card glass-card rounded-2xl overflow-hidden border-slate-800/80 glass-card-hover flex flex-col reveal-scale" data-category="lowcode" style="transition-delay: 0.1s;">
+                <div class="h-48 bg-slate-900/90 relative overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-amber-900/50 to-brand-900/40"></div>
+                    <i class="fa-solid fa-diagram-project text-6xl text-amber-400/80 relative z-10"></i>
+                    <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[11px] font-bold z-10">Low-Code DOP</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Cleeksy Enterprise Workflows</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Digital operating system configurations mapping entity relational models and automated approval logic for corporate operations.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Cleeksy DOP</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Entity Modeling</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Workflow Auto</span>
+                        </div>
+                        <button onclick="openModal('cleeksy')" class="w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-brand-600 text-slate-200 hover:text-white text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Green Footprint -->
+            <div class="project-card glass-card rounded-2xl overflow-hidden border-slate-800/80 glass-card-hover flex flex-col reveal-scale" data-category="web" style="transition-delay: 0.2s;">
+                <div class="h-48 bg-slate-900/90 relative overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-emerald-900/60 to-teal-900/40"></div>
+                    <i class="fa-solid fa-leaf text-6xl text-emerald-400/80 relative z-10"></i>
+                    <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold z-10">Full-Stack</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Green Footprint Platform</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Sustainability platform tracking personal carbon footprints with interactive visual dashboards, goal tracking, and daily eco-action challenges.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">MongoDB</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Express</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">React</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">TailwindCSS</span>
+                        </div>
+                        <button onclick="openModal('greenfootprint')" class="w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-brand-600 text-slate-200 hover:text-white text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Real-Time Workspace -->
+            <div class="project-card glass-card rounded-2xl overflow-hidden border-slate-800/80 glass-card-hover flex flex-col reveal-scale" data-category="web">
+                <div class="h-48 bg-slate-900/90 relative overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-cyan-900/60 to-blue-900/40"></div>
+                    <i class="fa-solid fa-comments text-6xl text-cyan-400/80 relative z-10"></i>
+                    <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-[11px] font-bold z-10">Real-Time</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Real-Time Collaboration Hub</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            High-concurrency chat and project board with WebSocket state management, instant notifications, and multi-user room permissions.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Node.js</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Socket.IO</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">React</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Redis</span>
+                        </div>
+                        <button onclick="openModal('realtimehub')" class="w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-brand-600 text-slate-200 hover:text-white text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: 3D Engine Simulation -->
+            <div class="project-card glass-card rounded-2xl overflow-hidden border-slate-800/80 glass-card-hover flex flex-col reveal-scale" data-category="graphics" style="transition-delay: 0.1s;">
+                <div class="h-48 bg-slate-900/90 relative overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-rose-900/60 to-orange-900/40"></div>
+                    <i class="fa-solid fa-cube text-6xl text-rose-400/80 relative z-10"></i>
+                    <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-rose-500/20 text-rose-300 border border-rose-500/30 text-[11px] font-bold z-10">3D Graphics</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Interactive 3D Graphics Engine</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Interactive computer graphics rendering engine with custom lighting models, camera movement controls, and dynamic particle systems.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">OpenGL</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">C++</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Three.js</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Shaders</span>
+                        </div>
+                        <button onclick="openModal('graphicsengine')" class="w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-brand-600 text-slate-200 hover:text-white text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: Mobile App -->
+            <div class="project-card glass-card rounded-2xl overflow-hidden border-slate-800/80 glass-card-hover flex flex-col reveal-scale" data-category="graphics" style="transition-delay: 0.2s;">
+                <div class="h-48 bg-slate-900/90 relative overflow-hidden flex items-center justify-center p-6 border-b border-slate-800">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-purple-900/60 to-indigo-900/40"></div>
+                    <i class="fa-solid fa-mobile-screen-button text-6xl text-purple-400/80 relative z-10"></i>
+                    <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[11px] font-bold z-10">Mobile App</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Smart Student Assistant App</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Cross-platform mobile application providing timetable synchronization, assignment tracking, and campus notification alerts.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">React Native</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Firebase</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] font-medium text-slate-300">Redux</span>
+                        </div>
+                        <button onclick="openModal('mobileapp')" class="w-full py-2.5 rounded-xl bg-slate-800/80 hover:bg-brand-600 text-slate-200 hover:text-white text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                            <span>View Details</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="education" class="py-20 border-t border-slate-800/60 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <!-- Left Column: Academic Background -->
+            <div class="lg:col-span-5 space-y-6 reveal-left">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-1">ACADEMIC BACKGROUND</h2>
+                    <h3 class="text-3xl font-extrabold text-white">Education & Global Exchange</h3>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Education Item 1 -->
+                    <div class="glass-card p-6 rounded-2xl border-slate-800/80 glass-card-hover relative">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center text-xl font-bold border border-brand-500/30 shrink-0 mt-1">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="text-xs font-bold text-brand-400 tracking-wide">2023 – 2027</span>
+                                <h4 class="text-lg font-extrabold text-white leading-snug">Bachelor of Software Engineering</h4>
+                                <p class="text-xs font-semibold text-slate-300">The University of Danang – VKU</p>
+                                <p class="text-[11px] text-slate-400">Vietnam-Korea University of Information and Communication Technology.</p>
+                                <div class="pt-2">
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-bold">
+                                        Academic Rank: Good Standing
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education Item 2 -->
+                    <div class="glass-card p-6 rounded-2xl border-slate-800/80 glass-card-hover relative">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center text-xl font-bold border border-cyan-500/30 shrink-0 mt-1">
+                                <i class="fa-solid fa-plane"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="text-xs font-bold text-cyan-400 tracking-wide">2025</span>
+                                <h4 class="text-lg font-extrabold text-white leading-snug">KMUTNB Academic Exchange</h4>
+                                <p class="text-xs font-semibold text-slate-300">Thailand International Exchange Program</p>
+                                <p class="text-[11px] text-slate-400">King Mongkut's University of Technology North Bangkok. Academic and cultural delegation participant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Recognition & Certification -->
+            <div class="lg:col-span-7 space-y-6 reveal-right">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-1">RECOGNITION</h2>
+                    <h3 class="text-3xl font-extrabold text-white">Honors & Competitions</h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    
+                    <!-- Honors Card 1 -->
+                    <div class="glass-card p-5 rounded-2xl border-slate-800/80 glass-card-hover flex items-start gap-3.5">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg shrink-0 border border-amber-500/30">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold text-amber-400 block">2026</span>
+                            <h4 class="text-sm font-bold text-white leading-tight">KOICA Hackathon</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">International Hackathon Participant</p>
+                        </div>
+                    </div>
+
+                    <!-- Honors Card 2 -->
+                    <div class="glass-card p-5 rounded-2xl border-slate-800/80 glass-card-hover flex items-start gap-3.5">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg shrink-0 border border-purple-500/30">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold text-purple-400 block">2024</span>
+                            <h4 class="text-sm font-bold text-white leading-tight">Top 10 Male Finalist</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">Student Ambassador 2024</p>
+                        </div>
+                    </div>
+
+                    <!-- Honors Card 3 -->
+                    <div class="glass-card p-5 rounded-2xl border-slate-800/80 glass-card-hover flex items-start gap-3.5">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg shrink-0 border border-cyan-500/30">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold text-cyan-400 block">2024</span>
+                            <h4 class="text-sm font-bold text-white leading-tight">Best Web Design Finalist</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">University Web Engineering Contest</p>
+                        </div>
+                    </div>
+
+                    <!-- Honors Card 4 -->
+                    <div class="glass-card p-5 rounded-2xl border-slate-800/80 glass-card-hover flex items-start gap-3.5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg shrink-0 border border-emerald-500/30">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold text-emerald-400 block">2024</span>
+                            <h4 class="text-sm font-bold text-white leading-tight">AI & Scientific Research</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">AI Challenge, RoboCar, Scientific Contest</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Certification Full-Width Box -->
+                <div class="glass-card p-6 rounded-2xl border border-brand-500/30 bg-gradient-to-r from-brand-950/40 to-slate-900/60 flex items-center gap-4 relative overflow-hidden">
+                    <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-300 flex items-center justify-center text-xl shrink-0 border border-brand-500/40">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-brand-400 block">Certification</span>
+                        <h4 class="text-base font-extrabold text-white">Professional English Communication Certificate</h4>
+                        <p class="text-xs text-slate-300 mt-0.5">Fluent in professional IT discussions & client consultation.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact" class="py-20 border-t border-slate-800 bg-slate-950 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Left Info Section -->
+                <div class="lg:col-span-5 space-y-6 reveal-left">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-1">GET IN TOUCH</h2>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Let's Connect & Collaborate</h3>
+                        <p class="text-slate-400 mt-3 text-sm leading-relaxed">
+                            Looking for an energetic Software Engineering & Solution Consultant Intern? Feel free to reach out directly via email or phone!
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 pt-2">
+                        <!-- Email Card -->
+                        <div class="glass-card p-4 rounded-2xl border-slate-800/80 flex items-center gap-4 glass-card-hover">
+                            <div class="w-11 h-11 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center text-lg shrink-0 border border-brand-500/30">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-semibold text-slate-400 block">Email Address</span>
+                                <a href="mailto:dinhtrantienminh@gmail.com" class="text-sm font-bold text-slate-100 hover:text-brand-300 transition-colors">dinhtrantienminh@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <!-- Phone Card -->
+                        <div class="glass-card p-4 rounded-2xl border-slate-800/80 flex items-center gap-4 glass-card-hover">
+                            <div class="w-11 h-11 rounded-xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center text-lg shrink-0 border border-cyan-500/30">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-semibold text-slate-400 block">Phone Number</span>
+                                <a href="tel:+84943681407" class="text-sm font-bold text-slate-100 hover:text-cyan-300 transition-colors">(+84) 943-681-407</a>
+                            </div>
+                        </div>
+
+                        <!-- Location Card -->
+                        <div class="glass-card p-4 rounded-2xl border-slate-800/80 flex items-center gap-4 glass-card-hover">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-lg shrink-0 border border-emerald-500/30">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-semibold text-slate-400 block">Location</span>
+                                <span class="text-sm font-bold text-slate-100">Da Nang City, Vietnam</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Interactive Form Section -->
+                <div class="lg:col-span-7 reveal-right">
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl relative">
+                        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Name</label>
+                                    <input type="text" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Email</label>
+                                    <input type="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Subject</label>
+                                <input type="text" required placeholder="Internship / Collaboration Inquiry" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Message</label>
+                                <textarea rows="4" required placeholder="Hello Tien Minh, I'd like to discuss..." class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition-colors resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" id="submit-btn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-cyan-500 hover:from-brand-500 hover:to-cyan-400 text-white font-bold text-sm shadow-lg shadow-brand-600/30 transition-all hover:scale-[1.01] flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Send Message</span>
+                            </button>
+                        </form>
+                        <div id="contact-success-msg" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs text-center font-medium">
+                            <i class="fa-solid fa-circle-check mr-1.5"></i> Thank you! Your message has been prepared for Tien Minh.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="mt-16 border-t border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Dinh Tran Tien Minh (Michael Dev). All rights reserved.</p>
+                <p class="flex items-center gap-1">
+                    Crafted by <span class="text-brand-400 font-bold">Michael Dev</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex-col items-center justify-center p-4 transition-all duration-300">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 w-11 h-11 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-slate-700 transition-colors z-10" aria-label="Close Lightbox">
+            <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+        <div class="max-w-4xl max-h-[85vh] overflow-hidden rounded-2xl border border-slate-800 shadow-2xl flex items-center justify-center">
+            <img id="lightbox-img" src="" alt="Lightbox full view" class="max-w-full max-h-[80vh] object-contain">
+        </div>
+        <p id="lightbox-caption" class="text-slate-300 text-sm font-medium mt-4 text-center max-w-lg"></p>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card max-w-2xl w-full rounded-3xl p-6 sm:p-8 border border-slate-700 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center hover:bg-slate-700 transition-colors" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modal-content">
+                <!-- Dynamic Modal Content populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Typing Animation Effect
+            const titles = [
+                "Michael Dev",
+                "SE & Solution Consultant Intern @ Cleeksy",
+                "Software Engineering @ VKU"
+            ];
+
+            let titleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typedTextSpan = document.getElementById("typed-text");
+            const typingSpeed = 90;
+            const erasingSpeed = 45;
+            const newTextDelay = 2000;
+
+            function typeEffect() {
+                if (!typedTextSpan) return;
+
+                const currentTitle = titles[titleIndex];
+
+                if (isDeleting) {
+                    typedTextSpan.textContent = currentTitle.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typedTextSpan.textContent = currentTitle.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentTitle.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, newTextDelay);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    titleIndex = (titleIndex + 1) % titles.length;
+                    setTimeout(typeEffect, 400);
+                } else {
+                    setTimeout(typeEffect, isDeleting ? erasingSpeed : typingSpeed);
+                }
+            }
+
+            setTimeout(typeEffect, 500);
+
+            // Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+
+            // Scroll Reveal Animation (Intersection Observer)
+            const revealElements = document.querySelectorAll('.reveal-element, .reveal-scale, .reveal-left, .reveal-right');
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-active');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // Gallery Category Filtering Logic
+            const galleryTabs = document.querySelectorAll('.gallery-tab-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            galleryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const category = tab.getAttribute('data-category');
+
+                    galleryTabs.forEach(t => {
+                        t.classList.remove('bg-brand-600', 'text-white', 'shadow-lg');
+                        t.classList.add('glass-card', 'text-slate-400');
+                    });
+
+                    tab.classList.remove('glass-card', 'text-slate-400');
+                    tab.classList.add('bg-brand-600', 'text-white', 'shadow-lg');
+
+                    galleryItems.forEach(item => {
+                        if (item.classList.contains(`gallery-${category}`)) {
+                            item.classList.remove('hidden');
+                            setTimeout(() => {
+                                item.classList.add('reveal-active');
+                            }, 50);
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Project Filtering Logic
+            const projectFilterBtns = document.querySelectorAll('.project-filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            projectFilterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+
+                    projectFilterBtns.forEach(b => {
+                        b.classList.remove('bg-brand-600', 'text-white', 'shadow-lg');
+                        b.classList.add('glass-card', 'text-slate-400');
+                    });
+
+                    btn.classList.remove('glass-card', 'text-slate-400');
+                    btn.classList.add('bg-brand-600', 'text-white', 'shadow-lg');
+
+                    projectCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.classList.add('reveal-active');
+                            }, 50);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        // Lightbox Functions
+        function openLightbox(src, caption) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+
+            img.src = src;
+            cap.textContent = caption || '';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close Lightbox on Background Click
+        document.getElementById('lightbox-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Project Modal Details
+        const projectData = {
+            edumindai: {
+                title: "EduMindAI – Student Retention Predictor",
+                category: "AI / Machine Learning & Analytics",
+                description: "EduMindAI is an intelligent early-warning prediction system designed for academic institutions. It leverages Machine Learning algorithms (Random Forest, Logistic Regression) to analyze student performance metrics, attendance, and interaction data to predict dropout risks early.",
+                highlights: [
+                    "Predictive accuracy exceeding 88% on benchmark academic datasets.",
+                    "Interactive React dashboard for academic advisors and counselors.",
+                    "Automated personalized intervention recommendations for high-risk students.",
+                    "RESTful API backend powered by Python Scikit-Learn and Flask."
+                ],
+                tags: ["Python", "Scikit-Learn", "React.js", "Flask", "Tailwind CSS"]
+            },
+            cleeksy: {
+                title: "Cleeksy Enterprise Workflow Digitization",
+                category: "Low-Code DOP & Solution Consulting",
+                description: "Configured complex business process operating trees on Cleeksy's digital operating platform (DOP). Modeled Entity-Relational Structures (ERM), created multi-tier approval trees, and automated operational tasks for enterprise clients.",
+                highlights: [
+                    "Mapped 20+ enterprise business workflow diagrams into structured DOP configurations.",
+                    "Designed relational database entity models (ERM) for multi-department tracking.",
+                    "Automated conditional approval trees reducing manual processing time by 60%.",
+                    "Conducted integration testing and solution consulting sessions with client teams."
+                ],
+                tags: ["Cleeksy DOP", "Entity Modeling (ERM)", "Workflow Logic", "Solution Consulting"]
+            },
+            greenfootprint: {
+                title: "Green Footprint Sustainability Platform",
+                category: "Full-Stack Web Application",
+                description: "A comprehensive sustainability tracking platform empowering users to calculate, monitor, and reduce their daily carbon footprint through gamified eco-challenges and interactive visual analytics.",
+                highlights: [
+                    "Real-time carbon footprint calculator based on travel, energy, and consumption inputs.",
+                    "Interactive charts displaying monthly carbon reduction milestones.",
+                    "Social eco-challenge leaderboard for community engagement.",
+                    "Built with MERN stack (MongoDB, Express, React, Node.js)."
+                ],
+                tags: ["MongoDB", "Express.js", "React.js", "Node.js", "Tailwind CSS"]
+            },
+            realtimehub: {
+                title: "Real-Time Collaboration Hub",
+                category: "Real-Time Web Systems",
+                description: "High-concurrency team collaboration workplace featuring instant messaging, channel permissions, real-time shared whiteboards, and live document state synchronization.",
+                highlights: [
+                    "WebSocket connections supporting instant multi-user messaging.",
+                    "Redis memory store for high-performance session state caching.",
+                    "Granular channel access controls and encrypted file sharing.",
+                    "Responsive UI optimized for desktop and mobile collaborative work."
+                ],
+                tags: ["Node.js", "Socket.IO", "React.js", "Redis", "Tailwind CSS"]
+            },
+            graphicsengine: {
+                title: "Interactive 3D Computer Graphics Engine",
+                category: "Graphics & Simulation",
+                description: "A custom 3D rendering engine built to explore core computer graphics principles including shader pipelines, matrix transformations, dynamic lighting, and particle effects.",
+                highlights: [
+                    "Implemented Phong and Blinn-Phong lighting models with specular reflections.",
+                    "Interactive camera orbit and free-look control system.",
+                    "Dynamic particle physics simulation for visual effects.",
+                    "Integrated with Three.js / WebGL for web-based interactive rendering."
+                ],
+                tags: ["OpenGL", "C++", "Three.js", "WebGL", "GLSL Shaders"]
+            },
+            mobileapp: {
+                title: "Smart Student Assistant Mobile App",
+                category: "Mobile Application",
+                description: "A feature-packed cross-platform mobile app designed to help university students manage class timetables, track assignment deadlines, and receive instant campus updates.",
+                highlights: [
+                    "Automatic timetable sync with push notification reminders.",
+                    "Firebase cloud synchronization across multiple mobile devices.",
+                    "Offline mode with local storage persistence.",
+                    "Clean UI designed in Figma adhering to modern UX principles."
+                ],
+                tags: ["React Native", "Firebase", "Redux", "Figma", "REST APIs"]
+            }
+        };
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if (!data) return;
+
+            const content = document.getElementById('modal-content');
+            content.innerHTML = `
+                <span class="px-3 py-1 rounded-md bg-brand-500/20 text-brand-300 border border-brand-500/30 text-xs font-semibold inline-block mb-3">${data.category}</span>
+                <h3 class="text-2xl font-extrabold text-white mb-4">${data.title}</h3>
+                <p class="text-slate-300 text-sm leading-relaxed mb-6">${data.description}</p>
+                
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-3">Key Highlights</h4>
+                <ul class="space-y-2 text-xs text-slate-300 mb-6 list-disc list-inside">
+                    ${data.highlights.map(h => `<li>${h}</li>`).join('')}
+                </ul>
+
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-3">Tech Stack</h4>
+                <div class="flex flex-wrap gap-2">
+                    ${data.tags.map(t => `<span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-200 font-semibold">${t}</span>`).join('')}
+                </div>
+            `;
+
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('project-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Contact Form Submission Handler
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const msg = document.getElementById('contact-success-msg');
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Sending...`;
+
+            setTimeout(() => {
+                btn.innerHTML = `<i class="fa-solid fa-check"></i> Sent Successfully!`;
+                btn.classList.remove('from-brand-600', 'to-cyan-500');
+                btn.classList.add('bg-emerald-600');
+                msg.classList.remove('hidden');
+
+                document.getElementById('contact-form').reset();
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
